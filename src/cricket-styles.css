@@ -1,0 +1,187 @@
+/* Cricket score widget styles - isolated to prevent affecting other components */
+
+/* Reset font sizes to prevent global changes */
+.cricket-score-container * {
+    font-family: "Chakra Petch", sans-serif !important;
+    font-size: initial !important;
+  }
+  
+  /* Main container */
+  .cricket-score-container {
+    border-radius: 0.5rem;
+    width: 100%;
+    overflow: hidden;
+    isolation: isolate; /* Create a new stacking context to contain styles */
+  }
+  
+  /* Body and main container */
+  .cricket-score-container .sc_cw-body {
+    color: white !important;
+    width: 100% !important;
+    background-color: black !important;
+  }
+  
+  .cricket-score-container .sc_cw-main-container {
+    background-color: black !important;
+    border-radius: 0.5rem;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Header section */
+  .cricket-score-container .sc_cw-header {
+    background-color: black !important;
+    padding: 0.75rem;
+    width: 100% !important;
+  }
+  
+  /* Team info sections */
+  .cricket-score-container .sc_cw-team-info-desktop,
+  .cricket-score-container .sc_cw-team-info-mobile {
+    color: white !important;
+    width: 100% !important;
+    background-color: black !important;
+  }
+  
+  .cricket-score-container .sc_cw-team-info-desktop span,
+  .cricket-score-container .sc_cw-team-info-mobile span {
+    color: white !important;
+  }
+  
+  /* Mobile row in the header section */
+  .cricket-score-container .sc_cw-mobile-row {
+    background-color: black !important;
+    color: white !important;
+    width: 100% !important;
+  }
+  
+  /* Ball display */
+  .cricket-score-container .sc_cw-ball {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    margin: 0 2px;
+    font-weight: bold;
+    color: white !important;
+    background-color: #202020 !important;
+  }
+  
+  /* Table headers */
+  .cricket-score-container .sc_cw-table-heading {
+    background-color: #202020 !important;
+    color: white !important;
+    padding: 8px 4px;
+    font-weight: bold;
+    width: 100% !important;
+  }
+  
+  /* Table rows */
+  .cricket-score-container .sc_cw-table-row {
+    padding: 6px 4px;
+    border-bottom: 1px solid #333;
+    width: 100% !important;
+  }
+  
+  .cricket-score-container .sc_cw-desktop-row,
+  .cricket-score-container .sc_cw-mobile-row {
+    color: white !important;
+    width: 100% !important;
+    background-color: black !important;
+  }
+  
+  .cricket-score-container .sc_cw-desktop-row div,
+  .cricket-score-container .sc_cw-mobile-row div {
+    color: white !important;
+    font-size: 12px !important;
+  }
+  
+  /* Force white text color for player names and stats */
+  .cricket-score-container .sc_cw-table-row div {
+    color: white !important;
+    font-size: 12px !important;
+  }
+  
+  /* SVG icons in table rows */
+  .cricket-score-container .sc_cw-table-row svg path {
+    fill: white !important;
+  }
+  
+  /* Other info sections */
+  .cricket-score-container .sc_cw-other-info,
+  .cricket-score-container .sc_cw-other-info-mobile {
+    background-color: #202020 !important;
+    color: white !important;
+    padding: 8px 0;
+    width: 100% !important;
+  }
+  
+  .cricket-score-container .sc_cw-other-info div,
+  .cricket-score-container .sc_cw-other-info-mobile div {
+    color: white !important;
+    font-size: 12px !important;
+    border-right-color: #333 !important;
+  }
+  
+  /* Overs info */
+  .cricket-score-container .sc_cw-overs-info,
+  .cricket-score-container .sc_cw-overs-info-mobile {
+    background-color: black !important;
+    padding: 8px 0;
+    width: 100% !important;
+  }
+  
+  /* Mobile labels */
+  .cricket-score-container .sc_cw-mobile-label {
+    color: #868686 !important;
+    background-color: #202020 !important;
+  }
+  
+  /* Prevent global font size changes */
+  .cricket-score-container div {
+    font-size: 12px !important;
+  }
+  
+  /* Responsive styles */
+  @media (min-width: 768px) {
+    .cricket-score-container .sc_cw-table-container {
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: visible !important;
+    }
+    
+    .cricket-score-container .sc_cw-table-row {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: space-between !important;
+    }
+    
+    .cricket-score-container .sc_cw-table-row div {
+      flex: 1 !important;
+      min-width: auto !important;
+      text-align: center !important;
+    }
+    
+    .cricket-score-container .sc_cw-table-row div:first-child {
+      flex: 2 !important;
+      text-align: left !important;
+    }
+    
+    .cricket-score-container .sc_cw-overs-info,
+    .cricket-score-container .sc_cw-overs-info-mobile {
+      overflow-x: auto !important;
+      display: flex !important;
+      justify-content: center !important;
+    }
+    
+    .cricket-score-container .sc_cw-over {
+      margin: 0 10px !important;
+    }
+  }
+  
