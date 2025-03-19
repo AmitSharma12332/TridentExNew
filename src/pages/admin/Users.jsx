@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { server } from "../../constants/config";
+import { useSelector } from "react-redux";
 
 export default function Users() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,6 +18,7 @@ export default function Users() {
     direction: "ascending",
   });
   const [statusFilter, setStatusFilter] = useState("all");
+  const { user } = useSelector((state) => state.userReducer);
 
   // State for add money dialog
   const [isAddMoneyOpen, setIsAddMoneyOpen] = useState(false);
@@ -34,7 +36,7 @@ export default function Users() {
     name: "",
     email: "",
     password: "",
-    currency: "USD",
+    currency: user?.currency,
     role: "user", // Fixed as user
     gender: "male",
     amount: "",
@@ -553,6 +555,9 @@ export default function Users() {
                         )}
                       </button>
                     </th>
+                    <th className="h-12 px-4 text-left align-middle font-medium text-[rgb(var(--color-text-muted))]">
+                    Exposure
+                  </th>
                     <th className="h-12 px-4 text-right align-middle font-medium text-[rgb(var(--color-text-muted))]">
                       Actions
                     </th>
@@ -597,6 +602,9 @@ export default function Users() {
                         </td>
                         <td className="p-4 align-middle">
                           {formatDate(user.createdAt)}
+                        </td>
+                        <td className="p-4 align-middle">
+                          {user.exposure.toLocaleString()}
                         </td>
                         <td className="p-4 flex justify-end items-center align-middle text-right">
                           <button
