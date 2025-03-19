@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { server } from "../../constants/config";
-import { useSelector } from "react-redux";
 
 export default function Users() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,7 +17,6 @@ export default function Users() {
     direction: "ascending",
   });
   const [statusFilter, setStatusFilter] = useState("all");
-  const { user } = useSelector((state) => state.userReducer);
 
   // State for add money dialog
   const [isAddMoneyOpen, setIsAddMoneyOpen] = useState(false);
@@ -863,7 +861,7 @@ export default function Users() {
                     type="text"
                     id="currency"
                     name="currency"
-                    value={user.currency.toUpperCase()}
+                    value={newUserData.currency.toUpperCase()}
                     className="w-full rounded-md border border-[rgb(var(--color-border))] bg-gray-100 px-3 py-2 text-sm"
                     disabled
                   />

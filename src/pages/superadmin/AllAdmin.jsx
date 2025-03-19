@@ -160,18 +160,19 @@ export default function AllAdmins() {
   };
 
   // Open add money dialog
+  // Open add money dialog
   const openAddMoneyDialog = (user, isAdmin = false) => {
-  
-    setAmount("");
-    setIsAddMoneyOpen(true);
-  };
+    setSelectedUser({ ...user, isAdmin })
+    setAmount("")
+    setIsAddMoneyOpen(true)
+  }
 
   // Close add money dialog
   const closeAddMoneyDialog = () => {
-    setIsAddMoneyOpen(false);
-    setSelectedUser(null);
-    setAmount("");
-  };
+    setIsAddMoneyOpen(false)
+    setSelectedUser(null)
+    setAmount("")
+  }
 
   // Open add money dialog
   const openReduceMoneyDialog = (user) => {
@@ -187,14 +188,14 @@ export default function AllAdmins() {
     setAmount("");
   };
 
-  // Handle adding money
-  const handleAddMoney = async () => {
+   // Handle adding money
+   const handleAddMoney = async () => {
     if (!amount || isNaN(amount) || Number.parseFloat(amount) <= 0) {
-      toast.error("Please enter a valid amount greater than 0");
-      return;
+      toast.error("Please enter a valid amount greater than 0")
+      return
     }
 
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem("authToken")
 
     try {
       const response = await axios.put(
@@ -202,20 +203,18 @@ export default function AllAdmins() {
         { amount: Number.parseFloat(amount) },
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+        },
+      )
 
-      toast.success(response.data?.message || "Amount added successfully");
-      closeAddMoneyDialog();
-      fetchAllAdmins(); // Refresh the data
+      toast.success(response.data?.message || "Amount added successfully")
+      closeAddMoneyDialog()
+      fetchAllAdmins() // Refresh the data
     } catch (error) {
-      toast.error(
-        error.response?.data?.message ||
-          "Failed to update amount. Please try again later."
-      );
-      console.error("Error updating amount:", error);
+      toast.error(error.response?.data?.message || "Failed to update amount. Please try again later.")
+      console.error("Error updating amount:", error)
     }
-  };
+  }
+  
 
   // Handle adding money
   const handleReduceMoney = async () => {
@@ -654,13 +653,11 @@ export default function AllAdmins() {
                               Reduce Money
                             </button>
                             <button
-                              className=" inline-flex h-8 items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-3 py-2 text-xs font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-                              onClick={() =>
-                                openAddMoneyDialog(item.admin, true)
-                              }
-                            >
-                              Add Money
-                            </button>
+                        className="mr-2 inline-flex h-8 items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-3 py-2 text-xs font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                        onClick={() => openAddMoneyDialog(item.admin, true)}
+                      >
+                        Add Money
+                      </button>
                             <button
                               className={`inline-flex h-8 items-center justify-center rounded-md border px-3 py-2 text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${
                                 item.admin.status === "active"
@@ -1102,7 +1099,7 @@ export default function AllAdmins() {
           <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-xl font-semibold text-[rgb(var(--color-text-primary))]">
-                Add Money to {selectedUser?.isAdmin ? "Master" : "User"} Wallet
+                Add Money to {selectedUser?.isAdmin ? "Admin" : "User"} Wallet
               </h3>
               <button
                 onClick={closeAddMoneyDialog}
@@ -1115,12 +1112,7 @@ export default function AllAdmins() {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
@@ -1128,23 +1120,17 @@ export default function AllAdmins() {
             <div className="mb-4">
               <p className="mb-2 text-sm text-[rgb(var(--color-text-muted))]">
                 Adding money to:{" "}
-                <span className="font-medium text-[rgb(var(--color-text-primary))]">
-                  {selectedUser?.name}
-                </span>
+                <span className="font-medium text-[rgb(var(--color-text-primary))]">{selectedUser?.name}</span>
               </p>
               <p className="mb-4 text-sm text-[rgb(var(--color-text-muted))]">
                 Current balance:{" "}
                 <span className="font-medium text-[rgb(var(--color-text-primary))]">
-                  {selectedUser?.amount.toLocaleString()}{" "}
-                  {selectedUser?.currency.toUpperCase()}
+                  {selectedUser?.amount.toLocaleString()} {selectedUser?.currency.toUpperCase()}
                 </span>
               </p>
 
               <div className="space-y-2">
-                <label
-                  htmlFor="add-amount"
-                  className="block text-sm font-medium text-[rgb(var(--color-text-primary))]"
-                >
+                <label htmlFor="add-amount" className="block text-sm font-medium text-[rgb(var(--color-text-primary))]">
                   Amount to Add
                 </label>
                 <input
@@ -1178,6 +1164,7 @@ export default function AllAdmins() {
           </div>
         </div>
       )}
+
 
       {/* reduce Money Dialog */}
       {isReducmoney && (
