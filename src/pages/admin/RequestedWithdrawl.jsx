@@ -721,11 +721,9 @@ export default function RequestedWithdrawl() {
               {selectedWithdrawal && (
                 <div className="rounded-md bg-gray-50 p-3 text-sm">
                   <p>
-                    <span className="font-medium">Receiver:</span> {selectedWithdrawal.receiverName}
+                    <span className="font-medium">Receiver:</span> {selectedWithdrawal.userName}
                   </p>
-                  <p>
-                    <span className="font-medium">Bank:</span> {selectedWithdrawal.bankName}
-                  </p>
+                
                   <p>
                     <span className="font-medium">Amount:</span> {formatAmount(selectedWithdrawal.amount)}
                   </p>
