@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 "use client"
 
-import { BellIcon, FileTextIcon } from "lucide-react"
+import { BellIcon, FileTextIcon, Lock } from "lucide-react"
 import { LayoutWrapper } from "../../components/layout-wrapper"
 import { GiRamProfile } from "react-icons/gi"
 
@@ -31,20 +31,14 @@ const userNavigation = [
         to: "/user/deposit",
         icon: BellIcon,
       },
-      
-    ],
-  }, 
-   {
-    title: "Settings",
-    items: [
       {
         title: "Change Password",
         to: "/user/change-password",
         icon: Lock,
       },
-      
     ],
-  },
+  }, 
+
 
 ]
 
