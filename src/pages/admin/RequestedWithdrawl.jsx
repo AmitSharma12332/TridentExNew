@@ -531,14 +531,15 @@ export default function RequestedWithdrawl() {
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  Bank Details
+                  User ID
                 </th>
-                <th
+               <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  Receiver
+                  Name
                 </th>
+               
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
@@ -575,14 +576,14 @@ export default function RequestedWithdrawl() {
               {currentItems.map((item) => (
                 <tr key={item._id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formatDate(item.createdAt)}</td>
+                 
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{item.bankName}</div>
-                    <div className="text-sm text-gray-500">Acc: {item.accNo}</div>
-                    <div className="text-sm text-gray-500">IFSC: {item.ifsc}</div>
+                    <div className="text-sm text-gray-900">{item.userId}</div>
+                    
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{item.receiverName}</div>
-                    <div className="text-sm text-gray-500">{item.contact}</div>
+                   <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm capitalize text-gray-900">{item.userName}</div>
+                    
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {formatAmount(item.amount)}

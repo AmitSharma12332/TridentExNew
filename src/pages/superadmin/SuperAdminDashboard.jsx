@@ -527,7 +527,23 @@ export default function SuperAdminDashboard() {
                     )}
                   </div>
                 </th>
-             
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                
+                >
+                  <div className="flex items-center">
+                   Master ID
+                  </div>
+                </th>  <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                
+                >
+                  <div className="flex items-center">
+                   Name
+                  </div>
+                </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
@@ -564,6 +580,8 @@ export default function SuperAdminDashboard() {
               {currentItems.map((item) => (
                 <tr key={item._id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{formatDate(item.createdAt)}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.userId}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm capitalize text-gray-500">{item.userName}</td>
                
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {formatAmount(item.amount)}
