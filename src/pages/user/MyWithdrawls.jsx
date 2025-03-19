@@ -12,11 +12,6 @@ export default function MyWithdrawls() {
   const [showRequestModal, setShowRequestModal] = useState(false);
   const [formData, setFormData] = useState({
     amount: "",
-    accNo: "",
-    ifsc: "",
-    contact: "",
-    bankName: "",
-    receiverName: "",
   });
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
@@ -86,11 +81,6 @@ export default function MyWithdrawls() {
         setShowRequestModal(false);
         setFormData({
           amount: "",
-          accNo: "",
-          ifsc: "",
-          contact: "",
-          bankName: "",
-          receiverName: "",
         });
         // Refresh the withdrawal history
         setRefreshTrigger((prev) => prev + 1);
@@ -191,18 +181,7 @@ export default function MyWithdrawls() {
                 >
                   Date
                 </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                >
-                  Bank Details
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                >
-                  Receiver
-                </th>
+
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -223,21 +202,7 @@ export default function MyWithdrawls() {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {formatDate(item.createdAt)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{item.bankName}</div>
-                    <div className="text-sm text-gray-500">
-                      Acc: {item.accNo}
-                    </div>
-                    <div className="text-sm text-gray-500">
-                      IFSC: {item.ifsc}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">
-                      {item.receiverName}
-                    </div>
-                    <div className="text-sm text-gray-500">{item.contact}</div>
-                  </td>
+
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {formatAmount(item.amount)}
                   </td>
@@ -302,96 +267,6 @@ export default function MyWithdrawls() {
                     className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))]"
                     required
                     min="1"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="bankName"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Bank Name*
-                  </label>
-                  <input
-                    type="text"
-                    id="bankName"
-                    name="bankName"
-                    value={formData.bankName}
-                    onChange={handleInputChange}
-                    className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))]"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="accNo"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Account Number*
-                  </label>
-                  <input
-                    type="text"
-                    id="accNo"
-                    name="accNo"
-                    value={formData.accNo}
-                    onChange={handleInputChange}
-                    className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))]"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="ifsc"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    IFSC Code*
-                  </label>
-                  <input
-                    type="text"
-                    id="ifsc"
-                    name="ifsc"
-                    value={formData.ifsc}
-                    onChange={handleInputChange}
-                    className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))]"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="receiverName"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Account Holder Name*
-                  </label>
-                  <input
-                    type="text"
-                    id="receiverName"
-                    name="receiverName"
-                    value={formData.receiverName}
-                    onChange={handleInputChange}
-                    className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))]"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="contact"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Contact Number*
-                  </label>
-                  <input
-                    type="tel"
-                    id="contact"
-                    name="contact"
-                    value={formData.contact}
-                    onChange={handleInputChange}
-                    className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))]"
-                    required
                   />
                 </div>
               </div>
