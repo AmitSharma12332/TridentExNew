@@ -28,8 +28,8 @@ export default function AllAdmins() {
     name: "",
     email: "",
     password: "",
-    currency: "USD",
-    role: "admin", // Fixed as admin
+    currency: "INR",
+    role: "master", // Fixed as admin
     gender: "male",
     amount: "",
   })
@@ -115,8 +115,8 @@ export default function AllAdmins() {
           name: "",
           email: "",
           password: "",
-          currency: "USD",
-          role: "admin",
+          currency: "INR",
+          role: "master",
           gender: "male",
           amount: "",
         })
@@ -314,13 +314,13 @@ export default function AllAdmins() {
           <div className="flex justify-between items-center">
 
           <h3 className="text-lg font-semibold leading-none tracking-tight text-[rgb(var(--color-text-primary))]">
-            Admin Management
+            Master Management
           </h3>
           <button
           onClick={() => setIsModalOpen(true)}
           className="inline-flex items-center justify-center rounded-md bg-[rgb(var(--color-primary))] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[rgb(var(--color-primary-dark))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
           >
-          Add New Admin
+          Add New Master
         </button>
           </div>
           <p className="text-sm text-[rgb(var(--color-text-muted))]">Manage all admin accounts from here</p>
@@ -438,7 +438,7 @@ export default function AllAdmins() {
                   {currentAdmins.length === 0 ? (
                   <tr>
                     <td colSpan="7" className="p-4 text-center text-[rgb(var(--color-text-muted))]">
-                    No admins found
+                    No Master found
                     </td>
                   </tr>
                   ) : (
@@ -755,6 +755,8 @@ export default function AllAdmins() {
                     className="w-full rounded-md border border-[rgb(var(--color-border))] px-3 py-2 text-sm focus:border-[rgb(var(--color-primary))] focus:outline-none focus:ring-1 focus:ring-[rgb(var(--color-primary))]"
                   >
                     <option value="INR">INR</option>
+                                        <option value="RUB">RUB</option>
+
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
                   </select>
