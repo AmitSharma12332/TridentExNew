@@ -144,10 +144,12 @@ const BetSlip = memo(({ match, onClose, setStake, eventId, betPlaced }) => {
         onClose();
       }
     } catch (error) {
+      setIsPlacingBet(false);
       console.error("Bet placement error:", error);
+      toast.error(error.response.data.message);
       (error.response?.data?.message);
     } 
-  }, [betAmount, user, onClose, betPlaced, fetchTransactions]);
+  }, [betAmount, onClose, betPlaced, fetchTransactions]);
 
   const currentMatch = matchRef.current;
 

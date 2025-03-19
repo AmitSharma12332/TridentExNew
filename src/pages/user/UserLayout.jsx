@@ -33,6 +33,17 @@ const userNavigation = [
       },
       
     ],
+  }, 
+   {
+    title: "Settings",
+    items: [
+      {
+        title: "Change Password",
+        to: "/user/change-password",
+        icon: Lock,
+      },
+      
+    ],
   },
 
 ]

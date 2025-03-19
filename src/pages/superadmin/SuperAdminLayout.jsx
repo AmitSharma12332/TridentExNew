@@ -5,6 +5,7 @@ import {
   FileTextIcon,
   Gamepad,
   LayoutDashboardIcon,
+  Lock,
   SettingsIcon,
   UserCogIcon,
 } from "lucide-react";
@@ -30,7 +31,7 @@ const superAdminNavigation = [
     title: "Management",
     items: [
       {
-        title: "All Admins",
+        title: "All Masters",
         to: "/superadmin/alladmins",
         icon: UserCogIcon,
       },
@@ -48,6 +49,11 @@ const superAdminNavigation = [
         title: "Settings",
         to: "/superadmin/website-management",
         icon: SettingsIcon,
+      },
+      {
+        title: "Change Password",
+        to: "/superadmin/change-password",
+        icon: Lock,
       },
     ],
   },

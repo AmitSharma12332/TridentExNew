@@ -91,10 +91,10 @@ const ProfileDropdown = memo(({ isOpen, toggleDropdown, user, onLogout }) => {
               </button>
             </Link>
           )}
-          {user?.role === "admin" && (
+          {user?.role === "master" && (
             <Link to="/admin/profile">
               <button className="w-full text-left px-4 py-2 text-white hover:bg-[rgb(var(--color-primary-darker))] transition-colors">
-                Admin Panel
+                Master Panel
               </button>
             </Link>
           )}
@@ -141,10 +141,10 @@ const MobileProfileDropdown = memo(({ isOpen, toggleDropdown, user, onLogout }) 
               </button>
             </Link>
           )}
-          {user?.role === "admin" && (
+          {user?.role === "master" && (
             <Link to="/admin/dashboard">
               <button className="w-full text-left px-4 py-2 text-white hover:bg-[rgb(var(--color-primary-darker))] transition-colors">
-                Admin Panel
+                Master Panel
               </button>
             </Link>
           )}
