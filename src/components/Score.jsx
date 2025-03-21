@@ -14,7 +14,23 @@ export default function Score({ eventId }) {
     const fetchScoreData = async () => {
       try {
         const response = await axios.get(`${server}api/v1/scores/scores?eventId=${eventId}`)
-        if (response.data.success) setScoreData(response.data.score)
+        
+        if (response.data.success) {
+          let score = response.data.score
+          
+          // Ensure score is an array
+          if (typeof score === "string") {
+            try {
+              score = JSON.parse(score) // Parse if it's a string
+            } catch (error) {
+              console.error("Error parsing score data:", error)
+              score = [] // Default to empty array if parsing fails
+            }
+          }
+          
+          setScoreData(Array.isArray(score) ? score : []) // Ensure it's an array
+        }
+        
         setIsLoading(false)
       } catch (err) {
         setError("Failed to fetch score data")
@@ -22,16 +38,17 @@ export default function Score({ eventId }) {
         console.error("Error fetching score data:", err)
       }
     }
-
+  
     // Initial fetch
     fetchScoreData()
-
+  
     // Set up polling to refresh data every 1 second
     const intervalId = setInterval(fetchScoreData, 1000)
-
+  
     // Clean up interval on component unmount
     return () => clearInterval(intervalId)
   }, [eventId])
+  
 
   if (isLoading && !scoreData) {
     return (
