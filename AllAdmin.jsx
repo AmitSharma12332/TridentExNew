@@ -636,42 +636,53 @@ export default function AllAdmins() {
                               .toLocaleString()}
                           </td>
                          <td className="p-2 flex flex-wrap gap-2 justify-center">
-  <button
-    className="inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-2 py-1 text-[10px] font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-    onClick={() => toggleExpandAdmin(item.admin._id)}
-  >
-    {expandedAdmins[item.admin._id] ? "Collapse" : "Expand"}
-  </button>
-  <button
-    className="inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-2 py-1 text-[10px] font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-    onClick={() => openReduceMoneyDialog(item.admin, true)}
-  >
-    Reduce Money
-  </button>
-  <button
-    className="inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-2 py-1 text-[10px] font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-    onClick={() => openAddMoneyDialog(item.admin, true)}
-  >
-    Add Money
-  </button>
-  <button
-    className={`inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border px-2 py-1 text-[10px] font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${
-      item.admin.status === "active"
-        ? "border-red-200 bg-red-50 text-red-600 hover:bg-red-100"
-        : "border-green-200 bg-green-50 text-green-600 hover:bg-green-100"
-    }`}
-    onClick={() => openBanConfirmDialog(item.admin, true)}
-  >
-    {item.admin.status === "active" ? "Ban Admin" : "Unban Admin"}
-  </button>
-  <button
-    className="bg-red-500 inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border border-[rgb(var(--color-border))] text-white px-2 py-1 text-[10px] font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-    onClick={() => openDelConfirmDialog(item.admin, true)}
-  >
-    Delete
-  </button>
-</td>
-
+                            <button
+                              className="inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-2 py-1 text-[10px] font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                              onClick={() => toggleExpandAdmin(item.admin._id)}
+                            >
+                              {expandedAdmins[item.admin._id]
+                                ? "Collapse"
+                                : "Expand"}
+                            </button>
+                            <button
+                              className="inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-2 py-1 text-[10px] font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                              onClick={() =>
+                                openReduceMoneyDialog(item.admin, true)
+                              }
+                            >
+                              Reduce Money
+                            </button>
+                            <button
+                              className="inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-2 py-1 text-[10px] font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                              onClick={() =>
+                                openAddMoneyDialog(item.admin, true)
+                              }
+                            >
+                              Add Money
+                            </button>
+                            <button
+                              className={`inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border px-2 py-1 text-[10px] font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${
+                                item.admin.status === "active"
+                                  ? "border-red-200 bg-red-50 text-red-600 hover:bg-red-100"
+                                  : "border-green-200 bg-green-50 text-green-600 hover:bg-green-100"
+                              }`}
+                              onClick={() =>
+                                openBanConfirmDialog(item.admin, true)
+                              }
+                            >
+                              {item.admin.status === "active"
+                                ? "Ban Admin"
+                                : "Unban Admin"}
+                            </button>
+                            <button
+                              className="bg-red-500 inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border border-[rgb(var(--color-border))] text-white px-2 py-1 text-[10px] font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                              onClick={() =>
+                                openDelConfirmDialog(item.admin, true)
+                              }
+                            >
+                              Delete
+                            </button>
+                          </td>
                         </tr>
 
                         {expandedAdmins[item.admin._id] && (
