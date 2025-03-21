@@ -162,17 +162,17 @@ export default function AllAdmins() {
   // Open add money dialog
   // Open add money dialog
   const openAddMoneyDialog = (user, isAdmin = false) => {
-    setSelectedUser({ ...user, isAdmin })
-    setAmount("")
-    setIsAddMoneyOpen(true)
-  }
+    setSelectedUser({ ...user, isAdmin });
+    setAmount("");
+    setIsAddMoneyOpen(true);
+  };
 
   // Close add money dialog
   const closeAddMoneyDialog = () => {
-    setIsAddMoneyOpen(false)
-    setSelectedUser(null)
-    setAmount("")
-  }
+    setIsAddMoneyOpen(false);
+    setSelectedUser(null);
+    setAmount("");
+  };
 
   // Open add money dialog
   const openReduceMoneyDialog = (user) => {
@@ -188,14 +188,14 @@ export default function AllAdmins() {
     setAmount("");
   };
 
-   // Handle adding money
-   const handleAddMoney = async () => {
+  // Handle adding money
+  const handleAddMoney = async () => {
     if (!amount || isNaN(amount) || Number.parseFloat(amount) <= 0) {
-      toast.error("Please enter a valid amount greater than 0")
-      return
+      toast.error("Please enter a valid amount greater than 0");
+      return;
     }
 
-    const token = localStorage.getItem("authToken")
+    const token = localStorage.getItem("authToken");
 
     try {
       const response = await axios.put(
@@ -203,18 +203,20 @@ export default function AllAdmins() {
         { amount: Number.parseFloat(amount) },
         {
           headers: { Authorization: `Bearer ${token}` },
-        },
-      )
+        }
+      );
 
-      toast.success(response.data?.message || "Amount added successfully")
-      closeAddMoneyDialog()
-      fetchAllAdmins() // Refresh the data
+      toast.success(response.data?.message || "Amount added successfully");
+      closeAddMoneyDialog();
+      fetchAllAdmins(); // Refresh the data
     } catch (error) {
-      toast.error(error.response?.data?.message || "Failed to update amount. Please try again later.")
-      console.error("Error updating amount:", error)
+      toast.error(
+        error.response?.data?.message ||
+          "Failed to update amount. Please try again later."
+      );
+      console.error("Error updating amount:", error);
     }
-  }
-  
+  };
 
   // Handle adding money
   const handleReduceMoney = async () => {
@@ -246,8 +248,6 @@ export default function AllAdmins() {
     }
   };
 
-
-
   // Open ban/unban confirmation dialog
   const openBanConfirmDialog = (user, isAdmin = false) => {
     setUserToModify({ ...user, isAdmin });
@@ -265,9 +265,9 @@ export default function AllAdmins() {
       toast.error("Invalid user selected for deletion.");
       return;
     }
-  
+
     const token = localStorage.getItem("authToken");
-  
+
     try {
       const response = await axios.post(
         `${server}api/v1/user/deleteuser/${userToModify._id}`, // ✅ Use `userToModify` instead of `selectedUser`
@@ -276,7 +276,7 @@ export default function AllAdmins() {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-  
+
       toast.success(response.data?.message || "User deleted successfully");
       fetchAllAdmins();
       closeDelConfirmDialog();
@@ -288,24 +288,24 @@ export default function AllAdmins() {
       console.error("Error deleting user:", error);
     }
   };
-  
+
   // ✅ Ensure `userToModify` is properly set when opening the confirmation modal
   const openDelConfirmDialog = (user, isAdmin = false) => {
     if (!user) {
       toast.error("User data is missing.");
       return;
     }
-    
+
     setUserToModify({ ...user, isAdmin });
     setIsDelConfirmOpen(true);
   };
-  
+
   // ✅ Make sure to reset `userToModify` when closing the modal
   const closeDelConfirmDialog = () => {
     setIsDelConfirmOpen(false);
     setUserToModify(null);
   };
-  
+
   // Handle user status change (ban/unban)
   const handleUserStatusChange = async () => {
     const token = localStorage.getItem("authToken");
@@ -635,9 +635,9 @@ export default function AllAdmins() {
                               )
                               .toLocaleString()}
                           </td>
-                          <td className="p-4 grid grid-cols-3 gap-2">
+                          <td className="p-1 flex flex-wrap gap-1 justify-center">
                             <button
-                              className=" inline-flex h-8 items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-3 py-2 text-xs font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                              className="inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-2 py-1 text-[10px] font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                               onClick={() => toggleExpandAdmin(item.admin._id)}
                             >
                               {expandedAdmins[item.admin._id]
@@ -645,7 +645,7 @@ export default function AllAdmins() {
                                 : "Expand"}
                             </button>
                             <button
-                              className=" inline-flex h-8 items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-3 py-2 text-xs font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                              className="inline-flex h-7 leading-none min-w-[80px] items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-2 py-1 text-[10px] font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                               onClick={() =>
                                 openReduceMoneyDialog(item.admin, true)
                               }
@@ -653,13 +653,15 @@ export default function AllAdmins() {
                               Reduce Money
                             </button>
                             <button
-                        className="mr-2 inline-flex h-8 items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-3 py-2 text-xs font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-                        onClick={() => openAddMoneyDialog(item.admin, true)}
-                      >
-                        Add Money
-                      </button>
+                              className="inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-transparent px-2 py-1 text-[10px] font-medium transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                              onClick={() =>
+                                openAddMoneyDialog(item.admin, true)
+                              }
+                            >
+                              Add Money
+                            </button>
                             <button
-                              className={`inline-flex h-8 items-center justify-center rounded-md border px-3 py-2 text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${
+                              className={`inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border px-2 py-1 text-[10px] font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${
                                 item.admin.status === "active"
                                   ? "border-red-200 bg-red-50 text-red-600 hover:bg-red-100"
                                   : "border-green-200 bg-green-50 text-green-600 hover:bg-green-100"
@@ -673,7 +675,7 @@ export default function AllAdmins() {
                                 : "Unban Admin"}
                             </button>
                             <button
-                              className="bg-red-500 inline-flex h-8 items-center justify-center rounded-md border border-[rgb(var(--color-border))] text-white px-3 py-2 text-xs font-medium transition-colors  focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                              className="bg-red-500 inline-flex h-7 min-w-[80px] items-center justify-center rounded-md border border-[rgb(var(--color-border))] text-white px-2 py-1 text-[10px] font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                               onClick={() =>
                                 openDelConfirmDialog(item.admin, true)
                               }
@@ -1112,7 +1114,12 @@ export default function AllAdmins() {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
@@ -1120,17 +1127,23 @@ export default function AllAdmins() {
             <div className="mb-4">
               <p className="mb-2 text-sm text-[rgb(var(--color-text-muted))]">
                 Adding money to:{" "}
-                <span className="font-medium text-[rgb(var(--color-text-primary))]">{selectedUser?.name}</span>
+                <span className="font-medium text-[rgb(var(--color-text-primary))]">
+                  {selectedUser?.name}
+                </span>
               </p>
               <p className="mb-4 text-sm text-[rgb(var(--color-text-muted))]">
                 Current balance:{" "}
                 <span className="font-medium text-[rgb(var(--color-text-primary))]">
-                  {selectedUser?.amount.toLocaleString()} {selectedUser?.currency.toUpperCase()}
+                  {selectedUser?.amount.toLocaleString()}{" "}
+                  {selectedUser?.currency.toUpperCase()}
                 </span>
               </p>
 
               <div className="space-y-2">
-                <label htmlFor="add-amount" className="block text-sm font-medium text-[rgb(var(--color-text-primary))]">
+                <label
+                  htmlFor="add-amount"
+                  className="block text-sm font-medium text-[rgb(var(--color-text-primary))]"
+                >
                   Amount to Add
                 </label>
                 <input
@@ -1164,7 +1177,6 @@ export default function AllAdmins() {
           </div>
         </div>
       )}
-
 
       {/* reduce Money Dialog */}
       {isReducmoney && (
@@ -1331,64 +1343,66 @@ export default function AllAdmins() {
       )}
 
       {/* Ban/Unban Confirmation Dialog */}
-     
-{isDelConfirmOpen && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-    <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-xl font-semibold text-[rgb(var(--color-text-primary))]">
-          Delete Confirmation
-        </h3>
-        <button
-          onClick={closeDelConfirmDialog} // ✅ Fixed function call
-          className="rounded-full p-1 text-[rgb(var(--color-text-muted))] hover:bg-[rgb(var(--color-primary-lighter))] hover:text-[rgb(var(--color-primary-dark))]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-      </div>
 
-      <div className="mb-6">
-        <p className="mb-4 text-[rgb(var(--color-text-primary))]">
-          Are you sure you want to delete <span className="font-medium">{userToModify?.name}</span>?
-        </p>
+      {isDelConfirmOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
+            <div className="mb-4 flex items-center justify-between">
+              <h3 className="text-xl font-semibold text-[rgb(var(--color-text-primary))]">
+                Delete Confirmation
+              </h3>
+              <button
+                onClick={closeDelConfirmDialog} // ✅ Fixed function call
+                className="rounded-full p-1 text-[rgb(var(--color-text-muted))] hover:bg-[rgb(var(--color-primary-lighter))] hover:text-[rgb(var(--color-primary-dark))]"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
 
-        <p className="text-sm text-red-600">
-          This action will permanently delete the user from the application.
-        </p>
-      </div>
+            <div className="mb-6">
+              <p className="mb-4 text-[rgb(var(--color-text-primary))]">
+                Are you sure you want to delete{" "}
+                <span className="font-medium">{userToModify?.name}</span>?
+              </p>
 
-      <div className="flex justify-end space-x-3">
-        <button
-          type="button"
-          onClick={closeDelConfirmDialog}
-          className="inline-flex items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-white px-4 py-2 text-sm font-medium text-[rgb(var(--color-text-primary))] transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2"
-        >
-          Cancel
-        </button>
-        <button
-          type="button"
-          onClick={handleDeleteUser}
-          className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 bg-red-600 hover:bg-red-700 focus:ring-red-500"
-        >
-          Delete
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+              <p className="text-sm text-red-600">
+                This action will permanently delete the user from the
+                application.
+              </p>
+            </div>
+
+            <div className="flex justify-end space-x-3">
+              <button
+                type="button"
+                onClick={closeDelConfirmDialog}
+                className="inline-flex items-center justify-center rounded-md border border-[rgb(var(--color-border))] bg-white px-4 py-2 text-sm font-medium text-[rgb(var(--color-text-primary))] transition-colors hover:bg-[rgb(var(--color-primary-lighter))] focus:outline-none focus:ring-2 focus:ring-[rgb(var(--color-primary))] focus:ring-offset-2"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleDeleteUser}
+                className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 bg-red-600 hover:bg-red-700 focus:ring-red-500"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
