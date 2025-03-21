@@ -13,24 +13,28 @@ const CricketScoreDirect = ({ eventId }) => {
 
   useEffect(() => {
     let intervalId;
-
+  
     const fetchScores = async () => {
       try {
         const response = await axios.get(
           `${server}api/v1/scores/cricket?eventId=${eventId}`
         );
-
-       
-        if (response.data.score.trim() === "") {
+  
+        const { score } = response.data; // Extract score from response
+  
+        if (!score.trim()) {
           setHtmlContent("<p>Match not started yet</p>");
         } else {
-          setHtmlContent(response.data);
+          setHtmlContent(score);
         }
+  
         setError(null);
-        localStorage.setItem(`cricketScoreHtml_${eventId}`, response.data.score);
+        localStorage.setItem(`cricketScoreHtml_${eventId}`, score);
       } catch (err) {
         console.error("Error fetching scores:", err);
         setError("Failed to fetch cricket scores");
+  
+        // Load cached score if available
         const cachedHtml = localStorage.getItem(`cricketScoreHtml_${eventId}`);
         if (cachedHtml) {
           setHtmlContent(cachedHtml);
@@ -40,12 +44,13 @@ const CricketScoreDirect = ({ eventId }) => {
         setLoading(false);
       }
     };
-
+  
     fetchScores();
     intervalId = setInterval(fetchScores, 1000);
-
+  
     return () => clearInterval(intervalId);
   }, [eventId]);
+  
 
   useEffect(() => {
     if (iframeRef.current && htmlContent) {
