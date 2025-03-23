@@ -131,7 +131,7 @@ export default function Users() {
           name: "",
           email: "",
           password: "",
-          currency: "USD",
+          currency: user?.currency || "",
           role: "user",
           gender: "male",
           amount: "",
