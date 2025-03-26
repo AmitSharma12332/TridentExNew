@@ -206,10 +206,11 @@ const BookmakerComponent = ({
 
   const bookmakerMarket = data.find(
     (market) =>
-      (market.market?.name === "Bookmaker" || market.market?.name === "Bookmaker 0%Comm") &&
+      (market.market?.name.toLowerCase().trim() === "bookmaker" ||
+        market.market?.name.toLowerCase().trim() === "bookmaker 0% comm") &&
       Array.isArray(market.odds?.runners) &&
-      market.odds.runners.length > 0,
-  )
+      market.odds.runners.length > 0
+  );
 
   const getMargins = useCallback(
     async (token) => {
