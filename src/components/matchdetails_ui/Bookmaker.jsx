@@ -243,7 +243,7 @@ const BookmakerComponent = ({
   }, [marginAgain])
 
   const handleOddsClick = (market, teamName, type, odds, value, selectionId) => {
-    if (value <= 0) return // Don't handle clicks for zero value odds
+  
 
     const betData = {
       home_team: market?.eventDetails?.runners?.[0]?.name || "Unknown",
