@@ -296,18 +296,28 @@ const MyBetsComponent = () => {
                     <td className="px-4 py-3 text-sm text-[rgb(var(--color-text-primary))]">{bet.odds}</td>
                     <td className="px-4 py-3 text-sm text-[rgb(var(--color-text-primary))]">{bet.stake.toFixed(2)}</td>
                     <td
-                      className={`px-4 py-3 text-sm ${isProfit ? "text-green-600 font-medium" : bet.status === "lost" ? "text-red-600 font-medium" : "text-[rgb(var(--color-text-primary))]"}`}
-                    >
-                      {profitLoss}
-                    </td>
+                  className={`px-4 py-3 text-sm ${
+                  bet.status === "cancelled"
+                    ? "text-yellow-500 font-medium"
+                    : isProfit
+                    ? "text-green-600 font-medium"
+                    : bet.status === "lost"
+                    ? "text-red-600 font-medium"
+                    : "text-[rgb(var(--color-text-primary))]"
+                  }`}
+                >
+                  {bet.status === "cancelled" ? "NA (Stake Refunded)" : profitLoss}
+                </td>
                     <td className="px-4 py-3">
                       <span
                         className={`capitalize text-xs font-medium ${
                           bet.status === "pending"
                             ? "text-yellow-600"
                             : bet.status === "lost"
-                              ? "text-red-600"
-                              : "text-green-600"
+                            ? "text-red-600"
+                            : bet.status === "cancelled"
+                            ? "text-yellow-600"
+                            : "text-[rgb(var(--color-text-primary))]"
                         }`}
                       >
                         {bet.status}
