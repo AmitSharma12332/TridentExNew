@@ -116,6 +116,7 @@ const BetSlip = memo(({ match, onClose, setStake, eventId, betPlaced }) => {
           eventId: currentMatch.eventId,
           selection: currentMatch.selectedTeam,
           match: `${currentMatch.home_team} vs ${currentMatch.away_team}`,
+          matchOddsMarketId: currentMatch.matchOddsMarketId,
           marketId: currentMatch.marketId,
           selectionId: currentMatch.selectionId,
           fancyNumber: currentMatch.fancyNumber,
