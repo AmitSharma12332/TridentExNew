@@ -123,9 +123,9 @@ const Allbets = () => {
       )
       toast.success(res.data.message)
 
-      getTransactions()
       setIsStatusDropdownOpen(null)
       setIsSettleModalOpen(false)
+      getTransactions()
     } catch (error) {
       console.error("Error changing bet status:", error)
     }
@@ -305,46 +305,56 @@ const Allbets = () => {
                 const isProfit = bet.status === "won"
              return (
               <tr key={bet._id} className="hover:bg-[rgb(var(--color-background-hover))] transition-colors">
-                <td className="px-6 py-4 text-sm text-[rgb(var(--color-text-primary))]">{bet.match}</td>
-                <td className="px-4 py-3 text-sm text-[rgb(var(--color-text-primary))]">
-                  {bet.selection}
-                  {bet?.fancyNumber && ` (${bet.fancyNumber})`}
+              <td className="px-6 py-4 text-sm text-[rgb(var(--color-text-primary))]">{bet.match}</td>
+              <td className="px-4 py-3 text-sm text-[rgb(var(--color-text-primary))]">
+                {bet.selection}
+                {bet?.fancyNumber && ` (${bet.fancyNumber})`}
+              </td>
+              <td className="px-6 py-4 text-sm text-[rgb(var(--color-text-primary))]">{bet.type}</td>
+              <td className="px-6 py-4 text-sm text-[rgb(var(--color-text-primary))]">{bet.odds}</td>
+              <td className="px-6 py-4 text-sm text-[rgb(var(--color-text-primary))]">{bet.stake}</td>
+              <td className="px-6 py-4 text-sm text-[rgb(var(--color-text-primary))]">{bet.category}</td>
+              <td
+                  className={`px-4 py-3 text-sm ${
+                  bet.status === "cancelled"
+                    ? "text-gray-500 font-medium"
+                    : isProfit
+                    ? "text-green-600 font-medium"
+                    : bet.status === "lost"
+                    ? "text-red-600 font-medium"
+                    : "text-[rgb(var(--color-text-primary))]"
+                  }`}
+                >
+                  {bet.status === "cancelled" ? "NA" : profitLoss}
                 </td>
-                <td className="px-6 py-4 text-sm text-[rgb(var(--color-text-primary))]">{bet.type}</td>
-                <td className="px-6 py-4 text-sm text-[rgb(var(--color-text-primary))]">{bet.odds}</td>
-                <td className="px-6 py-4 text-sm text-[rgb(var(--color-text-primary))]">{bet.stake}</td>
-                <td className="px-6 py-4 text-sm text-[rgb(var(--color-text-primary))]">{bet.category}</td>
+              <td className="px-4 py-3 text-sm text-[rgb(var(--color-text-primary))]">
+                {format(new Date(bet.createdAt), "yyyy-MM-dd HH:mm:ss")}
+              </td>
+              <td className="px-6 py-4 text-sm">
+                <div className="relative">
                 <td
-                      className={`px-4 py-3 text-sm ${isProfit ? "text-green-600 font-medium" : bet.status === "lost" ? "text-red-600 font-medium" : "text-[rgb(var(--color-text-primary))]"}`}
-                    >
-                      {profitLoss}
-                    </td>
-                <td className="px-4 py-3 text-sm text-[rgb(var(--color-text-primary))]">
-                  {format(new Date(bet.createdAt), "yyyy-MM-dd HH:mm:ss")}
+                  className={`capitalize w-24 text-center ${
+                  bet.status === "pending"
+                    ? "bg-yellow-100 text-yellow-800"
+                    : bet.status === "lost"
+                    ? "bg-red-100 text-red-800"
+                    : bet.status === "cancelled"
+                    ? "bg-gray-100 text-gray-800"
+                    : "bg-green-100 text-green-800"
+                  } rounded-lg px-4 py-1`}
+                >
+                  {bet.status}
                 </td>
-                <td className="px-6 py-4 text-sm">
-                  <div className="relative">
-                    <td
-                      className={`capitalize w-24 text-center ${
-                        bet.status === "pending"
-                          ? "bg-yellow-100 text-yellow-800"
-                          : bet.status === "lost"
-                            ? "bg-red-100 text-red-800"
-                            : "bg-green-100 text-green-800"
-                      } rounded-lg px-4 py-1`}
-                    >
-                      {bet.status}
-                    </td>
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-sm">
-                  <button
-                    onClick={() => openSettleModal(bet._id)}
-                    className="rounded bg-[rgb(var(--color-primary))] px-3 py-1.5 text-white hover:bg-[rgb(var(--color-primary-dark))] focus:outline-none transition-colors"
-                  >
-                    Settle Bet
-                  </button>
-                </td>
+                </div>
+              </td>
+              <td className="px-6 py-4 text-sm">
+                <button
+                onClick={() => openSettleModal(bet._id)}
+                className="rounded bg-[rgb(var(--color-primary))] px-3 py-1.5 text-white hover:bg-[rgb(var(--color-primary-dark))] focus:outline-none transition-colors"
+                >
+                Settle
+                </button>
+              </td>
               </tr>
             )})}
           </tbody>
@@ -410,33 +420,60 @@ const Allbets = () => {
 
       {/* Settle Bet Modal */}
       {isSettleModalOpen && (
-        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
-          <div className="rounded-lg bg-[rgb(var(--color-background))] p-6 border border-[rgb(var(--color-border))]">
-            <h2 className="mb-4 text-lg font-semibold text-[rgb(var(--color-text-primary))]">Settle Bet</h2>
-            <p className="mb-4 text-[rgb(var(--color-text-primary))]">Choose the outcome of the bet:</p>
-            <div className="flex justify-center space-x-4">
-              <button
-                onClick={() => handleStatusChange(selectedBetId, "won")}
-                className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600 transition-colors"
-              >
-                Won
-              </button>
-              <button
-                onClick={() => handleStatusChange(selectedBetId, "lost")}
-                className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 transition-colors"
-              >
-                Lost
-              </button>
-            </div>
-            <button
-              onClick={() => setIsSettleModalOpen(false)}
-              className="mt-4 rounded border border-[rgb(var(--color-border))] px-4 py-2 text-[rgb(var(--color-text-primary))] hover:bg-[rgb(var(--color-background-hover))] transition-colors"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
+  <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
+    <div className="relative w-full max-w-md rounded-xl bg-white dark:bg-[rgb(var(--color-background))] p-6 shadow-lg border border-[rgb(var(--color-border))]">
+      {/* Close button */}
+      <button
+        onClick={() => setIsSettleModalOpen(false)}
+        className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 dark:text-[rgb(var(--color-text-primary))] dark:hover:text-red-400 transition"
+      >
+        &times;
+      </button>
+
+      <h2 className="text-2xl font-bold mb-2 text-gray-800 dark:text-[rgb(var(--color-text-primary))]">
+        Settle Bet
+      </h2>
+      <p className="mb-6 text-sm text-gray-600 dark:text-[rgb(var(--color-text-primary))]">
+        Choose the outcome of the bet:
+      </p>
+
+      <div className="flex flex-col sm:flex-row sm:justify-between gap-3">
+        <button
+          onClick={() => handleStatusChange(selectedBetId, "won")}
+          className="flex-1 rounded-lg bg-green-500 px-4 py-2 text-white font-medium hover:bg-green-600 transition"
+        >
+          Won
+        </button>
+        <button
+          onClick={() => handleStatusChange(selectedBetId, "lost")}
+          className="flex-1 rounded-lg bg-red-500 px-4 py-2 text-white font-medium hover:bg-red-600 transition"
+        >
+          Lost
+        </button>
+        <button
+          onClick={() => handleStatusChange(selectedBetId, "cancelled")}
+          className="flex-1 rounded-lg bg-yellow-500 px-4 py-2 text-white font-medium hover:bg-yellow-600 transition"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={() => handleStatusChange(selectedBetId, "pending")}
+          className="flex-1 rounded-lg border border-yellow-500 text-yellow-600 px-4 py-2 font-medium hover:bg-yellow-50 transition"
+        >
+          Pending
+        </button>
+      </div>
+
+      <button
+        onClick={() => setIsSettleModalOpen(false)}
+        className="mt-6 w-full rounded-lg border border-[rgb(var(--color-border))] px-4 py-2 text-[rgb(var(--color-text-primary))] hover:bg-[rgb(var(--color-background-hover))] transition"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
+
     </div>
   )
 }
