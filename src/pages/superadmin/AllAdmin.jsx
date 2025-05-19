@@ -1013,6 +1013,7 @@ export default function AllAdmins() {
                     className="w-full rounded-md border border-[rgb(var(--color-border))] px-3 py-2 text-sm focus:border-[rgb(var(--color-primary))] focus:outline-none focus:ring-1 focus:ring-[rgb(var(--color-primary))]"
                   >
                     <option value="INR">INR</option>
+                       <option value="AED">AED</option>
                     <option value="RUB">RUB</option>
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
