@@ -8,7 +8,6 @@ import PropTypes from "prop-types"
 import { lazy, memo, useCallback, useEffect, useState, Suspense } from "react"
 import { server } from "../../constants/config"
 import { calculateNewMargin, calculateProfitAndLoss } from "../../utils/helper"
-import { betSelectionEvent } from "./bet-selection-event"
 
 const BetSlip = lazy(() => import("../BetSlip"))
 
