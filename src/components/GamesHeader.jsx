@@ -13,7 +13,7 @@ import "slick-carousel/slick/slick.css";
 const GamesHeader = ({ activeTab, setActiveTab }) => {
   const sports = [
     { name: "Cricket", icon: <GiCricketBat />, key: "cricket" },
-    { name: "Football", icon: <FaFutbol />, key: "football" },
+    // { name: "Football", icon: <FaFutbol />, key: "football" },
     { name: "Tennis", icon: <GiTennisBall />, key: "tennis" },
     { name: "Boxing", icon: <GiBoxingGloveSurprise />, key: "boxing" },
     { name: "Basketball", icon: <FaBasketballBall />, key: "basketball" },
