@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 
 // Sport ID mapping
 const SPORT_IDS = {
-  FOOTBALL: 1,
+  // FOOTBALL: 1,
   TENNIS: 2,
   CRICKET: 4,
   HORSE_RACING: 7,
@@ -15,12 +15,12 @@ const SPORT_IDS = {
 
 // Sports configuration
 const sportsConfig = [
-  {
-    id: SPORT_IDS.FOOTBALL,
-    name: "Football",
-    icon: "⚽",
-    route: "football",
-  },
+  // {
+  //   id: SPORT_IDS.FOOTBALL,
+  //   name: "Football",
+  //   icon: "⚽",
+  //   route: "football",
+  // },
   {
     id: SPORT_IDS.TENNIS,
     name: "Tennis",
