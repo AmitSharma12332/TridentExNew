@@ -242,7 +242,7 @@ const BookmakerComponent = ({
   onBetSelect,
   setStake,
   stake,
-  showBetSlip = true,
+  // showBetSlip = true,
   marginAgain,
   betPlaced,
 }) => {
@@ -289,18 +289,18 @@ const BookmakerComponent = ({
   }, [marginAgain])
 
   // Listen for bet selection events from other components
-  useEffect(() => {
-    const cleanup = betSelectionEvent.listen((event) => {
-      const { source } = event.detail
-      if (source !== "bookmaker") {
-        // Clear selection if another component selected a bet
-        setSelectedBet(null)
-        setSelectedOdd(null)
-      }
-    })
+  // useEffect(() => {
+  //   const cleanup = betSelectionEvent.listen((event) => {
+  //     const { source } = event.detail
+  //     if (source !== "bookmaker") {
+  //       // Clear selection if another component selected a bet
+  //       setSelectedBet(null)
+  //       setSelectedOdd(null)
+  //     }
+  //   })
 
-    return cleanup
-  }, [])
+  //   return cleanup
+  // }, [])
 
   const handleOddsClick = (market, teamName, type, odds, value, selectionId) => {
     // If clicking on the same odd, toggle it off
@@ -324,7 +324,7 @@ const BookmakerComponent = ({
     }
 
     // Notify other components that a bet was selected here
-    betSelectionEvent.dispatch("bookmaker")
+    // betSelectionEvent.dispatch("bookmaker")
 
     const betData = {
       home_team: market?.eventDetails?.runners?.[0]?.name || "Unknown",
