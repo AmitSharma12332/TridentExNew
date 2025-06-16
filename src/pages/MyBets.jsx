@@ -306,7 +306,7 @@ const MyBetsComponent = () => {
                     : "text-[rgb(var(--color-text-primary))]"
                   }`}
                 >
-                  {bet.status === "cancelled" ? "NA (Insufficient funds)" : profitLoss}
+                  {bet.status === "cancelled" ? "NA (CANCELLED)" : profitLoss}
                 </td>
                     <td className="px-4 py-3">
                       <span
