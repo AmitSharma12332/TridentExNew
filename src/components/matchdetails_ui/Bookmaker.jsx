@@ -364,7 +364,7 @@ const BookmakerComponent = ({
   }, [marginAgain]);
 
   // Show error message for specific event ID
-  if (eventId === "34417715") {
+  if (eventId === "34440606") {
     return (
       <div className="bg-[rgb(var(--color-background))] border border-[rgb(var(--color-border))] mt-2 mb-2 rounded-lg overflow-hidden">
         <div className="flex justify-between items-center px-3 py-3 bg-[rgb(var(--color-background))] border-b border-[rgb(var(--color-border))]">
