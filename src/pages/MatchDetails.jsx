@@ -78,7 +78,7 @@ const MatchDetails = ({ sportsData }) => {
     }
 
     // Skip API calls for the specific eventIds
-    if (eventId === "34440606" || eventId === "34448947") {
+    if (String(eventId) === "34440606" || String(eventId) === "34448947") {
       setLoading(false);
       return;
     }
@@ -237,7 +237,7 @@ const MatchDetails = ({ sportsData }) => {
   };
 
   // Check for specific eventIds and show glitch error
-  if (eventId === "34440606" || eventId === "34448947" || "34439603" || "34439613") {
+  if (String(eventId) === "34440606" || String(eventId) === "34448947") {
     return (
       <div className="px-2 pt-24 lg:pt-16">
         <div className="max-w-full flex items-center justify-center min-h-[calc(100vh-200px)]">
@@ -268,7 +268,7 @@ const MatchDetails = ({ sportsData }) => {
     return <p className="text-red-500 p-4 text-center">Error: {error}</p>;
 
   return (
-    <div className="px-2 pt-24 lg:pt-16">
+    <div className="px-2 pt-28 lg:pt-20">
       <div className="max-w-full grid grid-cols-1 md:grid-cols-12 lg:h-[calc(100vh-68px)]">
         <div className="md:col-span-2 lg:flex hidden overflow-y-auto">
           <AllGames sportsData={sportsData} />
