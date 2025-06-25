@@ -2,11 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: #ffffff;
- 
+body {
+  background-color: #ffffff;
 }
-
 
 :root {
   /* Primary colors */
@@ -89,47 +87,57 @@ body{
   animation: gradient var(--gradient-animation-duration) ease infinite;
 }
 
-
-
-::-webkit-scrollbar{
-    display: none;
+::-webkit-scrollbar {
+  display: none;
 }
 
-.slick-prev, .slick-next {
-    z-index: 10;
-    color: white;
-  }
-  .slick-prev {
-    left: -25px;
-    margin-top: 5px;
+.slick-prev,
+.slick-next {
+  z-index: 10;
+  color: white;
+}
+.slick-prev {
+  left: -25px;
+  margin-top: 5px;
 }
 .slick-next {
-      margin-top: 5px;
-    right: -25px;
-  }
-  
+  margin-top: 5px;
+  right: -25px;
+}
 
-  @keyframes flash {
-    0% {
-      opacity: 1;
-      filter: brightness(100%);
-    }
-    50% {
-      opacity: 1;
-      filter: brightness(150%);
-    }
-    100% {
-      opacity: 1;
-      filter: brightness(100%);
-    }
+@keyframes flash {
+  0% {
+    opacity: 1;
+    filter: brightness(100%);
   }
-  
-  .animate-flash {
-    animation: flash 0.5s;
+  50% {
+    opacity: 1;
+    filter: brightness(150%);
   }
-  
+  100% {
+    opacity: 1;
+    filter: brightness(100%);
+  }
+}
 
-/* From Uiverse.io by alexruix */ 
+.animate-flash {
+  animation: flash 0.5s;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+}
+
+/* From Uiverse.io by alexruix */
 .loader {
   width: 48px;
   height: 48px;
@@ -138,7 +146,7 @@ body{
 }
 
 .loader:before {
-  content: '';
+  content: "";
   width: 48px;
   height: 5px;
   background: #f0808050;
@@ -150,7 +158,7 @@ body{
 }
 
 .loader:after {
-  content: '';
+  content: "";
   width: 100%;
   height: 100%;
   background: #f08080;
@@ -171,7 +179,7 @@ body{
   }
 
   50% {
-    transform: translateY(18px) scale(1, .9) rotate(45deg);
+    transform: translateY(18px) scale(1, 0.9) rotate(45deg);
     border-bottom-right-radius: 40px;
   }
 
@@ -185,9 +193,8 @@ body{
 }
 
 @keyframes shadow324 {
-
   0%,
-    100% {
+  100% {
     transform: scale(1, 1);
   }
 
@@ -195,4 +202,3 @@ body{
     transform: scale(1.2, 1);
   }
 }
-
