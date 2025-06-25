@@ -11,7 +11,7 @@ import Loader from "../components/Loader";
 import Bookmaker from "../components/matchdetails_ui/Bookmaker";
 import CricketScore from "../components/matchdetails_ui/CircketScore";
 import MatchOdds from "../components/matchdetails_ui/MatchOdds";
-import Market from "../components/matchdetails_ui/Market"; 
+import Market from "../components/matchdetails_ui/Market";
 import { server } from "../constants/config";
 import OpenBetsMob from "../components/OpenBetsMob";
 import Score from "../components/Score";
@@ -77,6 +77,12 @@ const MatchDetails = ({ sportsData }) => {
       return;
     }
 
+    // Skip API calls for the specific eventId
+    if (eventId === "34440606") {
+      setLoading(false);
+      return;
+    }
+
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -87,7 +93,6 @@ const MatchDetails = ({ sportsData }) => {
           throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
         setData(response.data);
-       
       } catch (err) {
         console.error("Fetch error:", err);
         setError(
@@ -231,6 +236,33 @@ const MatchDetails = ({ sportsData }) => {
     });
   };
 
+  // Check for specific eventId and show glitch error
+  if (eventId === "34440606") {
+    return (
+      <div className="px-2 pt-24 lg:pt-16">
+        <div className="max-w-full flex items-center justify-center min-h-[calc(100vh-200px)]">
+          <div className="text-center p-8 bg-red-50 border-2 border-red-200 rounded-lg shadow-lg">
+            <div className="text-6xl mb-4">⚠️</div>
+            <h1 className="text-3xl font-bold text-red-600 mb-4">
+              Odd Glitch Error
+            </h1>
+            <p className="text-red-500 text-lg mb-2">
+              Something went wrong with the odds calculation!
+            </p>
+            <p className="text-red-400">
+              Event ID: {eventId} is experiencing technical difficulties.
+            </p>
+            <div className="mt-6 animate-pulse">
+              <div className="text-red-300 text-sm">
+                System Error Code: GLT-404-ODD
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (loading) return <Loader message="Loading match details..." />;
   if (error)
     return <p className="text-red-500 p-4 text-center">Error: {error}</p>;
@@ -264,17 +296,17 @@ const MatchDetails = ({ sportsData }) => {
           ) : (
             <Score eventId={eventId} />
           )}
-            <OpenBetsMob eventId={eventId} marginAgain={marginAgain} />
+          <OpenBetsMob eventId={eventId} marginAgain={marginAgain} />
 
-<MatchOdds
-  stake={stake}
-  marginAgain={marginAgain}
-  eventId={eventId}
-  setStake={handleStakeChange}
-  onBetSelect={handleBetSelection}
-  showBetSlip={true}
-  betPlaced={betPlaced}
-/>
+          <MatchOdds
+            stake={stake}
+            marginAgain={marginAgain}
+            eventId={eventId}
+            setStake={handleStakeChange}
+            onBetSelect={handleBetSelection}
+            showBetSlip={true}
+            betPlaced={betPlaced}
+          />
 
           {/* Navigation Tabs */}
           <div className="flex gap-1 my-2 lg:gap-2 bg-[rgb(var(--color-background))] border-[rgb(var(--color-border))] overflow-x-auto rounded-lg border p-2">
