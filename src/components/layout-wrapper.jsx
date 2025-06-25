@@ -10,7 +10,7 @@ export function LayoutWrapper({ children, navigation, userRole }) {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
 
   return (
-    <div className="flex h-screen pt-20 lg:pt-16 overflow-hidden">
+    <div className="flex h-screen pt-28 lg:pt-16 overflow-hidden">
       <Sidebar
         sections={navigation}
         userRole={userRole}
