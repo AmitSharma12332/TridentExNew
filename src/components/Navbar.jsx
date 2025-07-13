@@ -261,7 +261,7 @@ const NavbarComponent = ({ toggleSidebar, showsidebar }) => {
         {/* Marquee for important announcements */}
         <div className="marquee flex bg-red-600 text-white py-1 px-2 rounded-md mb-2 overflow-hidden">
           <div className="animate-marquee whitespace-nowrap text-sm font-medium">
-            🚨 IMPORTANT: Event IDs 34440606 & 34448947 - Bangladesh vs Sri Lanka and West Indies v Australia
+            🚨 IMPORTANT: Event IDs 34491272 West Indies v Australia
             match bets will be canceled due to odds glitch. All bets will be
             canceled and amounts will be refunded. 🚨
           </div>
