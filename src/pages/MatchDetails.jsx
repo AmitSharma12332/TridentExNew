@@ -237,7 +237,7 @@ const MatchDetails = ({ sportsData }) => {
   };
 
   // Check for specific eventIds and show glitch error
-  if (String(eventId) === "34448946" || String(eventId) === "34449136" || String(eventId) === "34449182" || String(eventId) === "34452308" || String(eventId) === "34463125") {
+  if (String(eventId) === "34491272" || String(eventId) === "34449136" || String(eventId) === "34449182" || String(eventId) === "34452308" || String(eventId) === "34463125") {
     return (
       <div className="px-2 pt-24 lg:pt-16">
         <div className="max-w-full flex items-center justify-center min-h-[calc(100vh-200px)]">
