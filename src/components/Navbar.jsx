@@ -259,12 +259,12 @@ const NavbarComponent = ({ toggleSidebar, showsidebar }) => {
 
       <div className="max-w-full mx-auto p-2 sm:px-4">
         {/* Marquee for important announcements */}
-        <div className="marquee flex bg-red-600 text-white py-1 px-2 rounded-md mb-2 overflow-hidden">
+{/*         <div className="marquee flex bg-red-600 text-white py-1 px-2 rounded-md mb-2 overflow-hidden">
           <div className="animate-marquee whitespace-nowrap text-sm font-medium">
             🚨 IMPORTANT: Event IDs 34491272 West Indies v Australia & 34484327 England v India 
             match bets will be paused due to odds glitch. All bets will be calcuated again and fixed. 🚨
           </div>
-        </div>
+        </div> */}
 
         {/* Mobile Header */}
         <div className="flex items-center justify-between h-fit lg:hidden">
